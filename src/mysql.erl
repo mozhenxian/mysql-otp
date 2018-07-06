@@ -583,11 +583,11 @@ handle_call({query, Query, Timeout}, _From, State) ->
             exit(timeout);
         QueryResult ->
             QueryResult
-    end,
+    end,io:format("*********** = ~p~n", [Recs]),
     SockMod:setopts(Socket, [{active, once}]),
     State1 = lists:foldl(fun update_state/2, State, Recs),
-    State1#state.warning_count > 0 andalso State1#state.log_warnings
-        andalso log_warnings(State1, Query),
+%%    State1#state.warning_count > 0 andalso State1#state.log_warnings
+%%        andalso log_warnings(State1, Query),
     handle_query_call_reply(Recs, Query, State1, []);
 handle_call({param_query, Query, Params}, From, State) ->
     handle_call({param_query, Query, Params, State#state.query_timeout}, From,

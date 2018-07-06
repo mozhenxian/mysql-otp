@@ -408,7 +408,7 @@ fetch_response(SockModule, Socket, Timeout, Proto, Acc) ->
                         #resultset{} = R ->
                             parse_resultset(R, ColCount, Proto)
                     end
-            end,
+            end,io:format("(((((((( ~p~n", [Result]),
             Acc1 = [Result | Acc],
             case more_results_exists(Result) of
                 true ->
